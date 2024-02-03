@@ -1,0 +1,67 @@
+# Compiled binary files
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+
+# Dependency directories
+vendor/
+go.sum
+go.mod
+
+# Application binary
+myapp
+
+# Environment variables file
+.env
+
+# Log files
+*.log
+
+# Test binary, if you have any
+*.test
+
+# Visual Studio Code specific files
+.vscode/
+
+# macOS specific files
+.DS_Store
+
+# JetBrains IDEs specific files
+.idea/
+
+# GoLand specific files
+.idea_goland/
+
+# Eclipse IDE specific files
+.classpath
+.project
+.settings/
+
+# Compiled Go files
+*.test
+
+# Compiled Go coverage data
+*.out
+
+# Swagger documentation files
+docs/swagger/
+
+# Binary built with swag (Swagger)
+swag
+
+# Gin logs
+logs/
+
+# Go binary
+/bin/
+
+# Go executables and packages
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
