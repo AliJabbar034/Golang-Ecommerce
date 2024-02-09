@@ -12,6 +12,8 @@ go.mod
 
 # Application binary
 myapp
+tmp
+.air.toml
 
 # Environment variables file
 .env
@@ -56,6 +58,8 @@ logs/
 
 # Go binary
 /bin/
+
+myauth.pem
 
 # Go executables and packages
 *.exe

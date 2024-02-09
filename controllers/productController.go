@@ -12,7 +12,23 @@ import (
 	"strconv"
 )
 
-// Create Product
+// CreateProduct Create Product
+// @Summary Create Product
+// @Description Creates a new product.
+// @Tags Product
+// @Security ApiKeyAuth
+// @Accept multipart/form-data
+// @Produce json
+// @Param Authorization header string true "Bearer token"
+// @Param name formData string true "Product Name"
+// @Param description formData string false "Product Description"
+// @Param price formData number true "Product Price"
+// @Param color formData []string false "Product Colors"
+// @Param file formData file true "Product Images"
+// @Success 201 {object} object "{"message": "Created Product Successfully", "productId": string, "id": string}"
+// @Failure 400 {object} object "{"message": "Bad Request"}"
+// @Failure 500 {object} object "{"message": "Error during creation of product"}"
+// @Router /product/ [post]
 func CreateProduct(c *gin.Context) {
 	product := &models.Product{}
 	reqUser, _ := c.Get("user")
@@ -61,7 +77,18 @@ func CreateProduct(c *gin.Context) {
 
 }
 
-// Get All Prodct
+// GetAllProduct Get All Products
+// @Summary Get All Products
+// @Description Retrieves a list of all products.
+// @Tags Product
+// @Accept json
+// @Produce json
+// @Param lt query string false "Price less than"
+// @Param gt query string false "Price greater than"
+// @Param color query string false "Color filter"
+// @Success 200 {object} object "{"message": "All products", "products": []}"
+// @Failure 500 {object} object "{"message": "Internal Server Error"}"
+// @Router /product/ [get]
 func GetAllProduct(c *gin.Context) {
 	query := bson.D{}
 	lessPrice := c.Query("lt")
@@ -93,8 +120,16 @@ func GetAllProduct(c *gin.Context) {
 	})
 }
 
-//Get Product By Id
-
+// GetProductById Get Product By ID
+// @Summary Get Product By ID
+// @Description Retrieves product information by ID.
+// @Tags Product
+// @Accept json
+// @Produce json
+// @Param id path string true "Product ID"
+// @Success 200 {object} object "{"message": "Get product by id", "product": object}"
+// @Failure 404 {object} object "{"message": "No Product Found"}"
+// @Router /product/{id} [get]
 func GetProductById(c *gin.Context) {
 	id := c.Param("id")
 	product, er := models.GetByID(id)
@@ -108,8 +143,20 @@ func GetProductById(c *gin.Context) {
 	})
 }
 
-//Update Product
-
+// UpdateProduct Update Product
+// @Summary Update Product
+// @Description Updates product information by ID.
+// @Tags Product
+// @Security ApiKeyAuth
+// @Accept json
+// @Produce json
+// @Param Authorization header string true "Bearer token"
+// @Param id path string true "Product ID"
+// @Param product body models.Product true "Product object"
+// @Success 200 {object} object "{"message": "Updated Successfully", "count": integer}"
+// @Failure 400 {object} object "{"message": "Bad Request"}"
+// @Failure 500 {object} object "{"message": "Internal Server Error"}"
+// @Router /product/{id} [put]
 func UpdateProduct(c *gin.Context) {
 	var product models.Product
 	if er := c.BindJSON(&product); er != nil {
@@ -128,8 +175,18 @@ func UpdateProduct(c *gin.Context) {
 	})
 }
 
-//Delete Product
-
+// DeleteProduct Delete Product
+// @Summary Delete Product
+// @Description Deletes a product by ID.
+// @Tags Product
+// @Security ApiKeyAuth
+// @Accept json
+// @Produce json
+// @Param Authorization header string true "Bearer token"
+// @Param id path string true "Product ID"
+// @Success 200 {object} object "{"message": "Product Deleted", "count": integer}"
+// @Failure 500 {object} object "{"message": "Internal Server Error"}"
+// @Router /product/{id} [delete]
 func DeleteProduct(c *gin.Context) {
 	_id := c.Param("id")
 	id, _ := primitive.ObjectIDFromHex(_id)

@@ -8,7 +8,16 @@ import (
 	"net/http"
 )
 
-// Create Order
+// CreateOrder Create Order
+// @Summary Create Order
+// @Description Creates a new order.
+// @Tags Order
+// @Accept json
+// @Produce json
+// @Param order body models.Order true "Order object"
+// @Success 201 {object} object "{"message": "Created Successfully", "id": string}"
+// @Failure 500 {object} object "{"message": "Internal Server Error"}"
+// @Router /order [post]
 func CreateOrder(c *gin.Context) {
 
 	order := &models.Order{}
@@ -30,7 +39,15 @@ func CreateOrder(c *gin.Context) {
 
 }
 
-// Get All Order
+// GetAllOrders Get All Orders
+// @Summary Get All Orders
+// @Description Retrieves a list of all orders.
+// @Tags Order
+// @Accept json
+// @Produce json
+// @Success 200 {object} object "{"message": "All orders", "orders": []}"
+// @Failure 500 {object} object "{"message": "Internal Server Error"}"
+// @Router /order [get]
 func GetAllOrders(c *gin.Context) {
 
 	orders, er := models.GetAllOrder()
@@ -45,7 +62,16 @@ func GetAllOrders(c *gin.Context) {
 	})
 }
 
-// Get Order By Id
+// GetOrder Get Order
+// @Summary Get Order
+// @Description Retrieves an order by ID.
+// @Tags Order
+// @Accept json
+// @Produce json
+// @Param id path string true "Order ID"
+// @Success 200 {object} object "{"message": "Success", "order": object}"
+// @Failure 500 {object} object "{"message": "Internal Server Error"}"
+// @Router /order/{id} [get]
 func GetOrder(c *gin.Context) {
 	id := c.Param("id")
 	_id, _ := primitive.ObjectIDFromHex(id)
@@ -60,8 +86,18 @@ func GetOrder(c *gin.Context) {
 	})
 }
 
-//Update Order Status
-
+// UpdateOrde Update Order
+// @Summary Update Order
+// @Description Updates the status of an order by ID.
+// @Tags Order
+// @Accept json
+// @Produce json
+// @Param id path string true "Order ID"
+// @Param order body models.Order true "Order object"
+// @Success 200 {object} object "{"message": "Updated successfully", "count": integer}"
+// @Failure 400 {object} object "{"message": "Order Status is empty"}"
+// @Failure 500 {object} object "{"message": "Internal Server Error"}"
+// @Router /order/{id} [put]
 func UpdateOrde(c *gin.Context) {
 	var order models.Order
 

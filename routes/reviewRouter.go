@@ -12,5 +12,5 @@ func ReviewRouter(c *gin.RouterGroup) {
 	router.DELETE("/:id", middleware.Authenticate, controllers.DeleteReview)
 	router.GET("/", controllers.GetAllReviews)
 	router.PUT("/:id", middleware.Authenticate, controllers.UpdateReview)
-	router.GET("/:id")
+	router.GET("/:id", controllers.GetRevById)
 }
