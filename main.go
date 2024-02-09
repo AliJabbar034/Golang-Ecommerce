@@ -25,7 +25,6 @@ func init() {
 // @version         1.0
 // @description     An Ecommerce service API in Go using Gin framework.
 // @contact.name   Ali Jabbar
-// @contact.url    https://twitter.com/sntshk
 // @contact.email  alijabbar0034@gmail.com
 
 // @license.name  Apache 2.0
