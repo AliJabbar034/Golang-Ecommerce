@@ -11,7 +11,6 @@ const docTemplate = `{
         "title": "{{.Title}}",
         "contact": {
             "name": "Ali Jabbar",
-            "url": "https://twitter.com/sntshk",
             "email": "alijabbar0034@gmail.com"
         },
         "license": {
